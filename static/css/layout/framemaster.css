@@ -1,0 +1,124 @@
+.web-site {
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background-color: white;
+}
+
+.web-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  /* border: 1px solid black; */
+  box-shadow: 0px 1px 7px 1px #00000024;
+  border-radius: 10px;
+  min-height: 750px;
+}
+
+.web-mobile {
+  display: none;
+}
+
+.content-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.content-sub-title {
+  text-align: center;
+}
+
+.footer {
+  background-color: #6b6b6b;
+  /* background-color: var(--header-color); */
+  color: #ffffff;
+}
+
+.footer-menu {
+  padding: 20px;
+}
+
+.copyright {
+  padding: 40px 10px 10px;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  text-align: left;
+}
+
+.copyright .ant-col {
+  padding: 10px 20px 10px 0px;
+}
+
+.copyright p {
+  margin: 0px;
+}
+
+.container-contant {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.footer-title {
+  font-size: 1.5em;
+  font-family: "SerithaiBold";
+}
+
+.list-menu {
+  color: #ffffff;
+  padding-bottom: 10px;
+}
+
+.list-menu :hover {
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/*==================== MEDIA QUERIES ====================*/
+/* For small devices */
+
+@media screen and (max-width: 450px) {
+}
+
+@media screen and (max-width: 340px) {
+}
+
+@media screen and (max-width: 280px) {
+}
+
+/* For medium devices */
+
+@media screen and (max-width: 780px) {
+  .web-site {
+    display: none;
+  }
+
+  .web-mobile {
+    display: flex;
+  }
+
+  .web-content {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+}
+
+@media screen and (max-width: 540px) {
+}
+
+/* For large devices */
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1090px) {
+}
+
+@media screen and (max-width: 900px) {
+}

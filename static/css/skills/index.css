@@ -1,0 +1,116 @@
+.skills-programming {
+  margin-top: 50px;
+}
+
+.skills-programming-card {
+  border-radius: 10px;
+  box-shadow: 0px 2px 12px 4px #00000005;
+  padding: 10px;
+  margin-left: 5px;
+  min-height: 400px;
+}
+
+.skills-programming-card:hover {
+  box-shadow: 0px 4px 10px 0px #0000002c;
+  transform: translateY(-4px);
+  transition-duration: 500ms;
+}
+
+.skills-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.skills-icon,
+.skills-arrow {
+  font-size: 2rem;
+}
+
+.skills-icon {
+  margin-right: 20px;
+}
+
+.skills-title {
+  font-size: 25px;
+}
+
+.skills-subtitle {
+  font-size: 10px;
+  color: gray;
+}
+
+.skills-arrow {
+  font-size: 1rem;
+  margin-left: auto;
+  transition: 0.4s;
+}
+
+.skills-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.skills-bar,
+.skills-percentage {
+  height: 5px;
+  border-radius: 0.25rem;
+}
+
+.skills-bar {
+  background-color: orange;
+}
+
+.skills-percentage {
+  display: block;
+  background-color: red;
+}
+
+.skills-html {
+  width: 90%;
+}
+
+.skills-collapse {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+/*==================== MEDIA QUERIES ====================*/
+/* For small devices */
+
+@media screen and (max-width: 450px) {
+}
+
+@media screen and (max-width: 340px) {
+}
+
+@media screen and (max-width: 280px) {
+}
+
+/* For medium devices */
+
+@media screen and (max-width: 780px) {
+  .skills-collapse {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 570px) {
+}
+
+@media screen and (max-width: 540px) {
+}
+
+/* For large devices */
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1090px) {
+}
+
+@media screen and (max-width: 900px) {
+}

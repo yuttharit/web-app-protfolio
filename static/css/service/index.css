@@ -1,0 +1,101 @@
+.service-list {
+  text-align: center;
+}
+
+.service-list-item {
+  display: flex;
+  justify-content: center;
+}
+
+.service-card-modal {
+  border-radius: 10px;
+  box-shadow: 5px 10px 8px #888888;
+  background-color: #f2f4f7;
+  padding: 10px;
+  max-width: 350px;
+  width: 100%;
+  height: 250px;
+}
+
+.card-description {
+  display: block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.card-description-mobile {
+  display: none;
+}
+
+.btn-card-desc {
+  width: 150px;
+  height: 50px;
+}
+
+.btn-card-desc:hover .service-icon {
+  transform: translateX(0.50rem);
+}
+
+.service-icon {
+}
+
+/*==================== MEDIA QUERIES ====================*/
+/* For small devices */
+
+@media screen and (max-width: 450px) {
+}
+
+@media screen and (max-width: 340px) {
+}
+
+@media screen and (max-width: 280px) {
+}
+
+/* For medium devices */
+
+@media screen and (max-width: 780px) {
+  .service-list {
+  }
+
+  .service-card-modal {
+    border-radius: 10px;
+    box-shadow: 5px 10px 8px #888888;
+    background-color: #f2f4f7;
+    padding: 10px;
+    max-width: none;
+    width: 100%;
+    height: 120px;
+  }
+
+  .card-description {
+    display: block;
+    padding-bottom: 20px;
+    position: initial;
+  }
+
+  .card-description-web {
+    display: none;
+  }
+
+  .card-description-mobile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 570px) {
+}
+
+@media screen and (max-width: 540px) {
+}
+
+/* For large devices */
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1090px) {
+}
+
+@media screen and (max-width: 900px) {
+}

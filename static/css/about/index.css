@@ -1,0 +1,84 @@
+.about-content {
+}
+
+.about-content-info {
+}
+
+.about-info-data {
+  margin-top: 30px;
+}
+
+.about-img {
+  width: 200px;
+  border-radius: 0.5rem;
+  justify-self: center;
+  align-self: center;
+}
+
+.about-description {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.about-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.about-info-title {
+}
+
+.about-info-name {
+}
+
+.about-info-title,
+.about-info-name {
+  display: block;
+  text-align: center;
+}
+
+.about-bytton {
+  display: flex;
+  justify-content: center;
+}
+
+/*==================== MEDIA QUERIES ====================*/
+/* For small devices */
+
+@media screen and (max-width: 450px) {
+}
+
+@media screen and (max-width: 340px) {
+}
+
+@media screen and (max-width: 280px) {
+}
+
+/* For medium devices */
+
+@media screen and (max-width: 780px) {
+  .about-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 570px) {
+}
+
+@media screen and (max-width: 540px) {
+}
+
+/* For large devices */
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 1090px) {
+}
+
+@media screen and (max-width: 900px) {
+}
