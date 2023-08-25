@@ -41,10 +41,13 @@ const Services = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setonservice(res.data.SERVICE_ON_WORK);
+        } else {
+          setonservice(constructure_data.SERVICE_ON_WORK.SERVICE_ON_WORK);
         }
       })
       .catch((e) => {
         message.error(e);
+        setonservice(constructure_data.SERVICE_ON_WORK.SERVICE_ON_WORK);
       });
   };
 
@@ -58,19 +61,21 @@ const Services = (props: Props) => {
   const renderservice = () => {
     let data: any = [];
     _.map(onservice, (item, index) => {
-      data.push({
-        id: index,
-        title: item.SERVICE_NAME,
-        detail: item.SERVICE_DETAIL,
-        icons:
-          item.SERVICE_NAME == "Frontend Developer" ? (
-            <DataObjectIcon />
-          ) : item.SERVICE_NAME == "Backend Developer" ? (
-            <StorageIcon />
-          ) : item.SERVICE_NAME == "Ui/Ux Designer" ? (
-            <BrushIcon />
-          ) : null,
-      });
+      item.SERVICE_NAME == "Frontend Developer"
+        ? null
+        : data.push({
+            id: index,
+            title: item.SERVICE_NAME,
+            detail: item.SERVICE_DETAIL,
+            icons:
+              item.SERVICE_NAME == "Frontend Developer" ? (
+                <DataObjectIcon />
+              ) : item.SERVICE_NAME == "Backend Developer" ? (
+                <StorageIcon />
+              ) : item.SERVICE_NAME == "Ui/Ux Designer" ? (
+                <BrushIcon />
+              ) : null,
+          });
     });
     return (
       <List

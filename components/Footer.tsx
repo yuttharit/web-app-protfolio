@@ -23,8 +23,8 @@ const Footer = (props: Props) => {
   //function
 
   useEffect(() => {
-    fetchprofileData();
     fetchdatamenu();
+    fetchprofileData();
     fetchdatsocial();
 
     return () => {};
@@ -39,9 +39,12 @@ const Footer = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setallMenuData(res.data.MENU_WEB);
+        } else {
+          setallMenuData(constructure_data.MENU_WEB.MENU_WEB);
         }
       })
       .catch((e) => {
+        setallMenuData(constructure_data.MENU_WEB.MENU_WEB);
         message.error(e);
       });
   };
@@ -55,10 +58,21 @@ const Footer = (props: Props) => {
           setfullname_en(res.data.FULL_NAME_EN);
           setaddress(res.data.ADDRESS);
           setphone_number(res.data.PHONE_NUMBER);
+        } else {
+          setprofileData(constructure_data.PROFILE_INFO);
+          setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
+          setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
+          setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+          setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
         }
       })
       .catch((e) => {
         message.error(e);
+        setprofileData(constructure_data.PROFILE_INFO);
+        setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
+        setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
+        setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+        setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
       });
   };
 
@@ -67,10 +81,13 @@ const Footer = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setsocialData(res.data.SOCIAL_DETAIL);
+        } else {
+          setsocialData(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
         }
       })
       .catch((e) => {
         message.error(e);
+        setsocialData(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
       });
   };
 

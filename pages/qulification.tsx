@@ -52,10 +52,13 @@ const Qulification = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           seteducation(res.data.EDUCATION_INFO);
+        } else {
+          seteducation(constructure_data.EDUCATION_INFO.EDUCATION_INFO);
         }
       })
       .catch((e) => {
         message.error(e);
+        seteducation(constructure_data.EDUCATION_INFO.EDUCATION_INFO);
       });
   };
 
@@ -64,10 +67,13 @@ const Qulification = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setwork(res.data.WORK);
+        } else {
+          setwork(constructure_data.WORK.WORK);
         }
       })
       .catch((e) => {
         message.error(e);
+        setwork(constructure_data.WORK.WORK);
       });
   };
 

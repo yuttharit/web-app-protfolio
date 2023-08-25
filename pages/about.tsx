@@ -32,10 +32,13 @@ const About = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setaboutdata(res.data.ABOUT_INFO);
+        } else {
+          setaboutdata(constructure_data.ABOUT_INFO.ABOUT_INFO);
         }
       })
       .catch((e) => {
         message.error(e);
+        setaboutdata(constructure_data.ABOUT_INFO.ABOUT_INFO);
       });
   };
 
@@ -44,10 +47,13 @@ const About = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setaboutdesc(res.data.ABOUT_INFO_DESC);
+        } else {
+          setaboutdesc(constructure_data.ABOUT_INFO_DESC.ABOUT_INFO_DESC);
         }
       })
       .catch((e) => {
         message.error(e);
+        setaboutdesc(constructure_data.ABOUT_INFO_DESC.ABOUT_INFO_DESC);
       });
   };
 

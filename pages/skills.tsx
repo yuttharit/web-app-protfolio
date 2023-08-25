@@ -38,10 +38,13 @@ const Skills = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setskills(res.data.SKILLS_PROGRAMMING);
+        } else {
+          setskills(constructure_data.SKILLS_PROGRAMMING.SKILLS_PROGRAMMING);
         }
       })
       .catch((e) => {
         message.error(e);
+        setskills(constructure_data.SKILLS_PROGRAMMING.SKILLS_PROGRAMMING);
       });
   };
   //fetch data

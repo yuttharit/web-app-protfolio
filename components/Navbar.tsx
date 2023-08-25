@@ -35,11 +35,13 @@ const Navbar = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setmenu(res.data.MENU_WEB);
+        } else {
+          setmenu(constructure_data.MENU_WEB.MENU_WEB);
         }
       })
       .catch((e) => {
         message.error(e);
-        setmenu(constructure_data.MENU_WEB);
+        setmenu(constructure_data.MENU_WEB.MENU_WEB);
       });
   };
 

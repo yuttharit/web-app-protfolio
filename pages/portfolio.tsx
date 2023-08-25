@@ -14,6 +14,7 @@ const { Meta } = Card;
 type Props = {
   getloadCss?: any;
   getPageName?: any;
+  getMenu?: any;
 };
 
 const Portfolio = (props: Props) => {
@@ -25,6 +26,8 @@ const Portfolio = (props: Props) => {
 
   useEffect(() => {
     props.getloadCss(["portfolio/index"]);
+    // props.getMenu("mobileadmin");
+
     fetchdataportfolio();
 
     return () => {};
@@ -39,10 +42,13 @@ const Portfolio = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setportfoilo(res.data.PORTFOLIO);
+        } else {
+          setportfoilo(constructure_data.PORTFOLIO.PORTFOLIO);
         }
       })
       .catch((e) => {
         message.error(e);
+        setportfoilo(constructure_data.PORTFOLIO.PORTFOLIO);
       });
   };
 

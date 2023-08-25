@@ -36,6 +36,8 @@ const RootApp = ({ Component, pageProps }: AppProps) => {
     setpageName(page_name);
   };
 
+  const getMenu = (menu: any) => {};
+
   const onpage = (test: any = null) => {
     const elementToScrollTo = document.getElementById(test ? test : "home");
     if (elementToScrollTo) {
@@ -91,6 +93,7 @@ const RootApp = ({ Component, pageProps }: AppProps) => {
           {...pageProps}
           getloadCss={getloadCss}
           getPageName={getPageName}
+          getMenu={getMenu}
         />
       </div>
       <div>

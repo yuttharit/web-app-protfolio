@@ -8,6 +8,7 @@ type Props = {
 };
 
 const Header = (props: Props) => {
+  console.log("props", props);
   //function
 
   //function
@@ -25,7 +26,13 @@ const Header = (props: Props) => {
   //render main
   return (
     <Head>
-      <title>Header</title>
+      <title>
+        {!!props.page_name
+          ? `YS-Portfoilo - ${props.page_name}`
+          : `YS-Portfoilo`}
+      </title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta charSet="UTF-8" />
       <link
         href={`${config_constructure.root_path}/static/css/main.css`}
         rel="stylesheet"
