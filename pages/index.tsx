@@ -30,9 +30,9 @@ const Home = (props: Props) => {
   //function
   useEffect(() => {
     props.getloadCss(["index/index"]);
+
     fetchprofile();
     fetchsocial();
-
     return () => {};
   }, []);
 
@@ -49,10 +49,21 @@ const Home = (props: Props) => {
           setjob_position(res.data.JOB_CUR);
           setphone_number(res.data.PHONE_NUMBER);
           setdescription(null);
+        } else {
+          setname(constructure_data.PROFILE_INFO.FULL_NAME);
+          setnickname(constructure_data.PROFILE_INFO.NICK_NAME);
+          setjob_position(constructure_data.PROFILE_INFO.JOB_CUR);
+          setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
+          setdescription(null);
         }
       })
       .catch((e) => {
         message.error(e);
+        setname(constructure_data.PROFILE_INFO.FULL_NAME);
+        setnickname(constructure_data.PROFILE_INFO.NICK_NAME);
+        setjob_position(constructure_data.PROFILE_INFO.JOB_CUR);
+        setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
+        setdescription(null);
       });
   };
 
@@ -61,10 +72,13 @@ const Home = (props: Props) => {
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
           setsocial(res.data.SOCIAL_DETAIL);
+        } else {
+          setsocial(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
         }
       })
       .catch((e) => {
         message.error(e);
+        setsocial(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
       });
   };
   //fetch data

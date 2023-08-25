@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import axios from "axios";
 
-export const handleError = function CatchErrorHandle(error: any) {};
+export const handleError = function CatchErrorHandle(error: any) {
+  if (error === 400) {
+    return "ส่งค่าไปไม่ครบตามที่กำหนด";
+  } else {
+    return "เกิดเหตุผิดพลาด กรุณาติดต่อผู้พัฒนา";
+  }
+};
 
 export const RequestFunction = async function RequestService(
   url: any,
