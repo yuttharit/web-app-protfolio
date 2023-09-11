@@ -8,6 +8,7 @@ import { Avatar as AvatarMui } from "@mui/material";
 import { MailOutlined } from "@ant-design/icons";
 import Router from "next/router";
 import Service from "./ServiceProvider";
+import i18n from "./i18n";
 
 type Props = {};
 
@@ -35,6 +36,7 @@ const Footer = (props: Props) => {
   //fetch data
 
   const fetchdatamenu = () => {
+    setallMenuData(constructure_data.MENU_WEB.MENU_WEB);
     Service.FetchMenuBar()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -50,6 +52,11 @@ const Footer = (props: Props) => {
   };
 
   const fetchprofileData = () => {
+    setprofileData(constructure_data.PROFILE_INFO);
+    setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
+    setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
+    setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+    setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
     Service.FetchProfileInfo()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -77,6 +84,7 @@ const Footer = (props: Props) => {
   };
 
   const fetchdatsocial = () => {
+    setsocialData(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
     Service.FetchSocialInfo()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -99,27 +107,41 @@ const Footer = (props: Props) => {
     Router.push(page);
   };
 
+  const filterMenu = (arrID: any = [], arrMenu: any) => {
+    return arrID.indexOf(parseInt(arrMenu.MENU_ID)) == -1;
+  };
+
   //control
 
   //render
 
   const renderallmenu = () => {
-    return allMenuData.length > 0
-      ? _.map(allMenuData, (menu, index) => {
-          return (
-            <Col xs={12} sm={12} md={12} lg={6} xl={6} key={index}>
-              <div
-                className="list-menu"
-                onClick={() => {
-                  changePage(menu.PAGE_PATH);
-                }}
-              >
-                <Texts size={14}>{menu.MENU_NAME}</Texts>
-              </div>
-            </Col>
-          );
-        })
-      : null;
+    let data: any = [];
+
+    _.map(allMenuData, (menu, index) => {
+      data.push({
+        MENU_ID: index,
+        ...menu,
+      });
+    });
+
+    return _.filter(
+      data,
+      filterMenu.bind(this, config_constructure.menu_bind)
+    ).map((menu, index) => {
+      return (
+        <Col xs={12} sm={12} md={12} lg={6} xl={6} key={index}>
+          <div
+            className="list-menu"
+            onClick={() => {
+              changePage(menu.PAGE_PATH);
+            }}
+          >
+            <Texts size={14}>{menu.MENU_NAME}</Texts>
+          </div>
+        </Col>
+      );
+    });
   };
 
   const rendersocial = () => {
@@ -187,7 +209,7 @@ const Footer = (props: Props) => {
             xl={{ span: 8 }}
             xxl={{ span: 8 }}
           >
-            <div className="footer-title">ที่อยู่</div>
+            <div className="footer-title">{i18n.t("address")}</div>
             <div style={{ paddingTop: 5 }}>
               <p>{fullname}</p>
               <p>{address ? address : null}</p>
@@ -201,7 +223,7 @@ const Footer = (props: Props) => {
             xl={{ span: 8 }}
             xxl={{ span: 8 }}
           >
-            <div className="footer-title">ติดต่อ</div>
+            <div className="footer-title">{i18n.t("contact")}</div>
             <div style={{ paddingTop: 5 }}>
               {phone_number ? (
                 <a href={`tel:${phone_number}`} style={{ color: "inherit" }}>

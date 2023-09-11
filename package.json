@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3001",
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
@@ -25,6 +25,7 @@
     "axios": "^1.4.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "i18next": "^23.5.1",
     "json-server": "^0.17.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",

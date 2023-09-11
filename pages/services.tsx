@@ -37,6 +37,7 @@ const Services = (props: Props) => {
   //fetch data
 
   const fetchservice = () => {
+    setonservice(constructure_data.SERVICE_ON_WORK.SERVICE_ON_WORK);
     Service.FetchService()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -61,7 +62,7 @@ const Services = (props: Props) => {
   const renderservice = () => {
     let data: any = [];
     _.map(onservice, (item, index) => {
-      item.SERVICE_NAME == "Frontend Developer"
+      item.SERVICE_NAME == "Ui / Ux Designer"
         ? null
         : data.push({
             id: index,
@@ -72,7 +73,7 @@ const Services = (props: Props) => {
                 <DataObjectIcon />
               ) : item.SERVICE_NAME == "Backend Developer" ? (
                 <StorageIcon />
-              ) : item.SERVICE_NAME == "Ui/Ux Designer" ? (
+              ) : item.SERVICE_NAME == "Ui / Ux Designer" ? (
                 <BrushIcon />
               ) : null,
           });
@@ -193,11 +194,11 @@ const Services = (props: Props) => {
   return (
     <div className="web-content service-content">
       <div className="content-title">
-        <Texts size={20} weight="bold">
+        <Texts size={20} weight="thin">
           Services
         </Texts>
         <div className="content-sub-title">
-          <Texts size={16} weight="thin">
+          <Texts size={40} weight="bold">
             What i offer
           </Texts>
         </div>

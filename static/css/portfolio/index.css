@@ -7,10 +7,13 @@
 
 .img-cover-list-menu {
   text-align: center;
+  background-color: red;
+  margin: 20px;
 }
 
 .img-cover-list-menu img {
-  width: 150px;
+  width: 100%;
+  max-width: 150px;
   padding-top: 20px;
 }
 
@@ -23,15 +26,37 @@
   transition: all 0.3s;
   min-height: 307px;
   cursor: pointer;
-  border: unset;
-  border-radius: 2px;
+  border: 10px;
+  border-radius: 20px;
+  border-color: #00000005;
   box-shadow: 0px 2px 12px 4px #00000005;
+  background-color: #dfd3c3;
+  height: 350px;
 }
+
+.card-img-block {
+  background-color: #596e79;
+  text-align: center;
+  border-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .meta-banner {
   padding: 20px;
   max-height: 100px;
   min-height: 100px;
   width: 100%;
+}
+
+.btn-show-pic {
+  background-color: #596e79;
+  color: white;
+}
+
+.port-btn {
+  padding-top: 30px;
+  text-align: center;
 }
 
 /*==================== MEDIA QUERIES ====================*/
@@ -55,6 +80,10 @@
 
   .port-info-mobile {
     display: flex;
+  }
+
+  .card-list-menu {
+    cursor: none;
   }
 }
 

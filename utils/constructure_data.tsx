@@ -37,6 +37,13 @@ export default {
         SUB_MENU_EN: "การแนะนำตัว",
         PAGE_PATH: "portfolio",
       },
+      {
+        MENU_NAME: "ติดต่อ",
+        MENU_NAME_EN: "Contact",
+        SUB_MENU: "My Introduction",
+        SUB_MENU_EN: "การแนะนำตัว",
+        PAGE_PATH: "contact",
+      },
     ],
   },
   ABOUT_INFO_DESC: {
@@ -60,23 +67,23 @@ export default {
       },
       {
         TITLE_INFO: "03",
-        TITLE_DESC: "โปรปจค",
+        TITLE_DESC: "โปรเจค",
         TITLE_DESC_EN: "Completd",
-        TITLE_DETAIL: "ที่สมบูรณ์",
+        TITLE_DETAIL: "โปรเจค",
         TITLE_DETAIL_EN: "project",
       },
-      {
-        TITLE_INFO: "30+",
-        TITLE_DESC: "จากสหกรณ์",
-        TITLE_DESC_EN: "From cooperative",
-        TITLE_DETAIL: "ที่ใช้งานจริง",
-        TITLE_DETAIL_EN: "actually work",
-      },
+      // {
+      //   TITLE_INFO: "30+",
+      //   TITLE_DESC: "จากสหกรณ์",
+      //   TITLE_DESC_EN: "From cooperative",
+      //   TITLE_DETAIL: "ผู้ใช้งาน",
+      //   TITLE_DETAIL_EN: "actually_work",
+      // },
       {
         TITLE_INFO: "02",
         TITLE_DESC: "บริษัท",
         TITLE_DESC_EN: "Companies",
-        TITLE_DETAIL: "ทำงาน",
+        TITLE_DETAIL: "บริษัท",
         TITLE_DETAIL_EN: "worked",
       },
     ],
@@ -87,7 +94,7 @@ export default {
     FULL_NAME_EN: "Yuttharit Sukhonthatarm",
     NICK_NAME: "เคนนี่",
     NICK_NAME_EN: "Kenny",
-    BIRTH_DATE: "26/02/1997",
+    BIRTH_DATE: "1997/2/26",
     BIRTH_DATE_FORMAT: "26 กุมภาพันธ์ 2540",
     AGE: "26",
     NATIONNALITY: "ไทย",
@@ -114,6 +121,12 @@ export default {
         URL_PATH: "https://line.me/ti/p/EjWtwfg2Kq",
         IS_USE: "1",
       },
+      {
+        URL_TYPE: "phonenumber",
+        URL_DESC: "",
+        URL_PATH: "081-9630728",
+        IS_USE: "1",
+      },
       { URL_TYPE: "github", URL_DESC: "", URL_PATH: "", IS_USE: "0" },
       { URL_TYPE: "gitlab", URL_DESC: "", URL_PATH: "", IS_USE: "0" },
     ],
@@ -124,8 +137,8 @@ export default {
       {
         TITLE_INFO: "Frontend developer",
         TITLE_INFO_EN: "Frontend developer",
-        DESC_INFO: "มากกว่า 4 ปี",
-        DESC_INFO_EN: "More than 4 years",
+        DESC_INFO: "มากกว่า 2 ปี",
+        DESC_INFO_EN: "More than 2 years",
         SKILLS: [
           { SKILLS_NAME: "HTML", SKILLS_DEATIL: "", SKILL_RATE: 3 },
           { SKILLS_NAME: "CSS", SKILLS_DEATIL: "", SKILL_RATE: 2 },
@@ -142,7 +155,7 @@ export default {
         DESC_INFO_EN: "More than 2 years",
         SKILLS: [
           { SKILLS_NAME: "PHP", SKILLS_DEATIL: "", SKILL_RATE: 4 },
-          { SKILLS_NAME: "Node Js", SKILLS_DEATIL: "", SKILL_RATE: 3 },
+          { SKILLS_NAME: "Node Js", SKILLS_DEATIL: "", SKILL_RATE: 2 },
         ],
       },
     ],
@@ -163,8 +176,8 @@ export default {
         ED_QUALIFI_EN: "",
         ED_GRADE: "2.70",
         ED_STATUS: "1",
-        ED_START: "new Date(2018, 7, 14)",
-        ED_END: "new Date(2020, 5, 2)",
+        ED_START: "2018/7/14",
+        ED_END: "2020/5/2",
       },
       {
         SCHOOL_NAME: "วิทยาลัยเทคนิคหาดใหญ่",
@@ -179,8 +192,8 @@ export default {
         ED_QUALIFI_EN: "",
         ED_GRADE: "2.85",
         ED_STATUS: "1",
-        ED_START: "new Date(2016, 4, 16)",
-        ED_END: "new Date(2018, 4, 11)",
+        ED_START: "2016/4/16",
+        ED_END: "2018/4/11",
       },
       {
         SCHOOL_NAME: "วิทยาลัยอาชีวศึกษาสงขลา",
@@ -196,7 +209,7 @@ export default {
         ED_GRADE: "",
         ED_STATUS: "1",
         ED_START: null,
-        ED_END: "new Date(2014, 1, 26)",
+        ED_END: "2014/1/26",
       },
     ],
   },
@@ -211,8 +224,8 @@ export default {
         WORK_TYPE: "3",
         POSITION: "Service Desk Support",
         WORK_STATUS: "1",
-        WORK_START: "new Date(2020, 9, 5)",
-        WORK_END: "new Date(2021, 3, 26)",
+        WORK_START: "2020/9/5",
+        WORK_END: "2021/3/26",
         JOB_DESC: "",
         JOB_DESC_EN: "",
       },
@@ -222,7 +235,7 @@ export default {
         WORK_TYPE: "1",
         POSITION: "Full Stack Developer",
         WORK_STATUS: "0",
-        WORK_START: "new Date(2021, 4, 25)",
+        WORK_START: "2021/4/25",
         WORK_END: null,
         JOB_DESC: "",
         JOB_DESC_EN: "",
@@ -280,7 +293,20 @@ export default {
         PORTFOLIO_DESC_EN:
           "Web for mobile app data management Online data management and website data management paralysis",
         PORTFOLIO_IMG: "",
-        PORTFOLIO_DETAIL: [],
+        PORTFOLIO_DETAIL: [
+          {
+            DETAIL_NAME: "DOAE",
+            DETAIL_URL: "",
+            DETAIL_IMG1:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login.png",
+            DETAIL_IMG2:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login (1).png",
+            DETAIL_IMG3:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login (2).png",
+            DETAIL_IMG4: "",
+            DETAIL_IMG5: "",
+          },
+        ],
       },
       {
         PORTFOLIO_NAME: "เว็บจัดการข้อมูลส่วนบุคล สำหรับสมาชิกสหกรณ์ ",
@@ -290,7 +316,20 @@ export default {
         PORTFOLIO_DESC_EN:
           "Website for members of the cooperative Manage and view information online.",
         PORTFOLIO_IMG: "",
-        PORTFOLIO_DETAIL: [],
+        PORTFOLIO_DETAIL: [
+          {
+            DETAIL_NAME: "DOAE",
+            DETAIL_URL: "",
+            DETAIL_IMG1:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login.png",
+            DETAIL_IMG2:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login.png",
+            DETAIL_IMG3:
+              "/static/images/webadmin/doae/doaeadmin.icoopsiam.com_login.png",
+            DETAIL_IMG4: "",
+            DETAIL_IMG5: "",
+          },
+        ],
       },
       {
         PORTFOLIO_NAME: "เว็บไซต์สำหรับสหกรณ์",
@@ -302,20 +341,13 @@ export default {
           {
             DETAIL_NAME: "DOAE",
             DETAIL_URL: "",
-            DETAIL_IMG1: "/static/images/doae_website.png",
-            DETAIL_IMG2: "/static/images/doae_wensite_on_mobile.png",
-            DETAIL_IMG3: "/static/images/doae_website1.png",
-            DETAIL_IMG4: "/static/images/doae_wensite_on_mobile1.png",
-            DETAIL_IMG5: "/static/images/doae_website2.png",
-          },
-          {
-            DETAIL_NAME: "",
-            DETAIL_URL: "",
-            DETAIL_IMG1: "",
-            DETAIL_IMG2: "",
-            DETAIL_IMG3: "",
-            DETAIL_IMG4: "",
-            DETAIL_IMG5: "",
+            DETAIL_IMG1: "/static/images/website/doae/doae_website.png",
+            DETAIL_IMG2:
+              "/static/images/website/doae/doae_wensite_on_mobile.png",
+            DETAIL_IMG3: "/static/images/website/doae/doae_website1.png",
+            DETAIL_IMG4:
+              "/static/images/website/doae/doae_wensite_on_mobile1.png",
+            DETAIL_IMG5: "/static/images/website/doae/doae_website2.png",
           },
         ],
       },

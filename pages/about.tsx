@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Texts from "../components/Texts";
 import _ from "lodash";
-import { Button, List, message } from "antd";
+import { Button, Card, Col, List, Row, message } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import constructure_data from "../utils/constructure_data";
 import Service from "../components/ServiceProvider";
+import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
+import WorkIcon from "@mui/icons-material/Work";
+import i18n from "../components/i18n";
 
 type Props = {
   getloadCss?: any;
@@ -28,6 +33,7 @@ const About = (props: Props) => {
   //fetch data
 
   const fetchdataabout = () => {
+    setaboutdata(constructure_data.ABOUT_INFO.ABOUT_INFO);
     Service.FetchAboutInfo()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -43,6 +49,7 @@ const About = (props: Props) => {
   };
 
   const fetchdataaboutdesc = () => {
+    setaboutdesc(constructure_data.ABOUT_INFO_DESC.ABOUT_INFO_DESC);
     Service.FetchAboutInfoDesc()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -72,6 +79,16 @@ const About = (props: Props) => {
         title: item.TITLE_INFO,
         title_desc: item.TITLE_DESC,
         title_detail: item.TITLE_DETAIL,
+        icons:
+          item.TITLE_DETAIL_EN == "experience" ? (
+            <MilitaryTechIcon />
+          ) : item.TITLE_DETAIL_EN == "project" ? (
+            <AccountTreeIcon />
+          ) : item.TITLE_DETAIL_EN == "actually_work" ? (
+            <AssuredWorkloadIcon />
+          ) : item.TITLE_DETAIL_EN == "worked" ? (
+            <WorkIcon />
+          ) : null,
       });
     });
     return (
@@ -79,24 +96,34 @@ const About = (props: Props) => {
         grid={{
           gutter: 16,
           xs: 1,
-          sm: 2,
-          md: 2,
-          lg: 4,
-          xl: 4,
-          xxl: 4,
+          sm: 1,
+          md: 1,
+          lg: 2,
+          xl: 2,
+          xxl: 2,
         }}
         dataSource={data}
-        renderItem={(item: any) => {
+        renderItem={(item: any, index: number) => {
           return (
-            <List.Item key={item.id} style={{ textAlign: "center" }}>
-              <Texts weight="bold" size={22}>
-                {item.title}
-              </Texts>
-              <div>
-                <Texts size={15}>{item.title_desc}</Texts>
-                <br />
-                <Texts size={15}>{item.title_detail}</Texts>
-              </div>
+            <List.Item key={index}>
+              <Card
+                className="list-about"
+                title={
+                  <div>
+                    <div>{item.icons}</div>
+                    <div>{item.title_detail}</div>
+                  </div>
+                }
+                headStyle={{
+                  backgroundColor: "#c7b198",
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                <Texts weight="bold" size={22}>
+                  {`${item.title} ${item.title_desc}`}
+                </Texts>
+              </Card>
             </List.Item>
           );
         }}
@@ -109,40 +136,48 @@ const About = (props: Props) => {
   return (
     <div className="web-content about-content">
       <div className="content-title">
-        <Texts size={20} weight="bold">
-          About Me
+        <Texts size={20} weight="thin">
+          {i18n.t("pageabouttitle")}
         </Texts>
         <div className="content-sub-title">
-          <Texts size={16} weight="thin">
-            My Introduction
+          <Texts size={40} weight="bold">
+            {i18n.t("pageaboutsubtitle")}
           </Texts>
         </div>
       </div>
-      <div className="about-content-info">
-        <div style={{ textAlign: "center" }}>
+      <Row className="about-info-data">
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={24}
+          xl={12}
+          xxl={12}
+          style={{ paddingLeft: "20px" }}
+        >
           <img
             src="../static/images/2Jv4e1.jpeg"
             alt="ex"
             className="about-img"
           />
-        </div>
-
-        <div className="about-info-data">
-          <div className="about-description">
-            <Texts>{aboutdesc.ABOUT_DESC}</Texts>
+        </Col>
+        <Col
+          xs={24}
+          sm={24}
+          md={24}
+          lg={24}
+          xl={12}
+          xxl={12}
+          className="about-info-data-detail"
+        >
+          <div className="about-info-frame">{renderaboutinfo()}</div>
+          <div style={{ paddingTop: "50px" }}>
+            <div className="about-description">
+              <Texts>{aboutdesc.ABOUT_DESC}</Texts>
+            </div>
           </div>
-
-          {/* <div className="about-info">{renderaboutinfo()}</div> */}
-          {renderaboutinfo()}
-          <div className="about-bytton">
-            <a href="/static/files/portfolio_ys.png" target="_blank">
-              <Button style={{ width: "200px", height: "60px" }}>
-                DownloadCV <DownloadOutlined />
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   );
 };

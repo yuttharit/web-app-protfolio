@@ -1,5 +1,7 @@
 .skills-programming {
   margin-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .skills-programming-card {
@@ -32,7 +34,7 @@
 }
 
 .skills-title {
-  font-size: 25px;
+  font-size: 601px;
 }
 
 .skills-subtitle {
@@ -77,6 +79,27 @@
   width: 100%;
 }
 
+.skill-border-main {
+  border: 1px solid #596e79;
+  border-radius: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+}
+
+.skill-list {
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.skill-box {
+  max-width: 400px;
+  width: 100%;
+  height: 300px;
+  padding-top: 20px;
+}
+
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */
 
@@ -96,6 +119,11 @@
     display: flex;
     flex-direction: column;
   }
+
+  .skill-border-main {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }
 
 @media screen and (max-width: 570px) {
@@ -107,9 +135,21 @@
 /* For large devices */
 
 @media screen and (max-width: 1200px) {
+  .skill-border-main {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 1090px) {
+  .skill-box {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+  }
 }
 
 @media screen and (max-width: 900px) {

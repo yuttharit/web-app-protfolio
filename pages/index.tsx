@@ -13,10 +13,13 @@ import { Button, Col, Row, Tooltip, message } from "antd";
 import Texts from "../components/Texts";
 import { Button as ButtonM } from "@mui/material";
 import Service from "../components/ServiceProvider";
+import Router from "next/router";
+import i18n from "../components/i18n";
 
 type Props = {
   getloadCss?: any;
   getPageName?: any;
+  onfunction?: any;
 };
 
 const Home = (props: Props) => {
@@ -41,6 +44,11 @@ const Home = (props: Props) => {
   //fetch data
 
   const fetchprofile = () => {
+    setname(constructure_data.PROFILE_INFO.FULL_NAME);
+    setnickname(constructure_data.PROFILE_INFO.NICK_NAME);
+    setjob_position(constructure_data.PROFILE_INFO.JOB_CUR);
+    setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
+    setdescription(null);
     Service.FetchProfileInfo()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -68,6 +76,7 @@ const Home = (props: Props) => {
   };
 
   const fetchsocial = () => {
+    setsocial(constructure_data.SOCIAL_DETAIL.SOCIAL_DETAIL);
     Service.FetchSocialInfo()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -85,76 +94,27 @@ const Home = (props: Props) => {
 
   //control
 
+  const ontest = (test?: any | null) => {
+    console.log("=>", test);
+    props.onfunction(test);
+  };
+
+  const pushPageURL = (page: string) => {
+    Router.push(page);
+  };
+
   //control
 
   //render
 
-  const renderlistsocial = () => {
-    let data: any = [];
-    _.map(social, (item, index) => {
-      item.IS_USE == "1"
-        ? data.push({
-            id: index,
-            desc: item.URL_TYPE,
-            path:
-              item.URL_TYPE == "email"
-                ? `mailto: ${item.URL_PATH}`
-                : item.URL_PATH,
-            icon:
-              item.URL_TYPE == "facebook" ? (
-                <FacebookOutlined />
-              ) : item.URL_TYPE == "github" ? (
-                <GithubOutlined />
-              ) : item.URL_TYPE == "gitlab" ? (
-                <GitlabOutlined />
-              ) : item.URL_TYPE == "line" ? (
-                <LinkOutlined />
-              ) : item.URL_TYPE == "email" ? (
-                <MailOutlined />
-              ) : (
-                <QuestionCircleOutlined />
-              ),
-          })
-        : null;
-    });
-    return _.map(data, (item) => {
-      return (
-        <a
-          key={item.id}
-          href={item.path}
-          target="_blank"
-          className="home-social-list"
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Tooltip title="prompt text">
-              <Texts size={28} color="black">
-                {item.icon}
-              </Texts>
-            </Tooltip>
-
-            <div className="home-social-desc">
-              <Texts color="black" style={{ paddingLeft: "8px" }}>
-                {item.desc}
-              </Texts>
-            </div>
-          </div>
-        </a>
-      );
-    });
-  };
-
   const renderimgsvg = () => {
     return (
-      <div>
+      <div className="home-social-list">
         <img
+          src="../static/images/2Jv4e1.jpeg"
+          alt="ex"
           className="img-svg-test"
-          src="../static/svg/web-programming.svg"
-          alt=""
+          style={{ borderRadius: "100%" }}
         />
       </div>
     );
@@ -162,28 +122,86 @@ const Home = (props: Props) => {
 
   const renderhomedetail = () => {
     return (
-      <Row
+      <div
         style={{
           padding: "20px",
+          textAlign: "center",
         }}
       >
-        <Col span={24}>
-          <Texts>{`สวัสดี ผมชื่อ ${name}`}</Texts>
-        </Col>
-        <Col span={24}>
-          <Texts size={25}>{job_position}</Texts>
-        </Col>
-        <Col span={24}>
-          <Texts size={25}>{description}</Texts>
-        </Col>
-        <Col span={24} style={{ paddingTop: "15px" }}>
-          <a href={`tel:${phone_number}`}>
-            <ButtonM variant="contained" size="large">
-              <Texts>ติดต่อ</Texts>
+        <div className="detail-title">{i18n.t("Greeting")}</div>
+        <div className="detail-title-name">{name}</div>
+        <div className="detail-title-job">{job_position}</div>
+        <Row style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={12}
+            xxl={12}
+            style={{ paddingBottom: "5px" }}
+          >
+            <ButtonM
+              variant="outlined"
+              style={{
+                paddingTop: "15px",
+                paddingBottom: "15px",
+                borderRadius: "30px",
+                color: "black",
+                borderColor: "black",
+              }}
+              href="/static/files/portfolio_ys.png"
+              target="_blank"
+            >
+              <Texts size={16}>{i18n.t("DownloadCV")}</Texts>
             </ButtonM>
-          </a>
-        </Col>
-      </Row>
+          </Col>
+          <Col
+            xs={24}
+            sm={24}
+            md={24}
+            lg={24}
+            xl={12}
+            xxl={12}
+            style={{ paddingBottom: "5px" }}
+          >
+            <div className="btn-web">
+              <ButtonM
+                variant="contained"
+                style={{
+                  paddingTop: "15px",
+                  paddingBottom: "15px",
+                  borderRadius: "30px",
+                  backgroundColor: "black",
+                }}
+                onClick={() => {
+                  console.log("web");
+                  ontest("contact");
+                }}
+              >
+                <Texts size={16}>{i18n.t("ContactInfo")}</Texts>
+              </ButtonM>
+            </div>
+            <div className="btn-mobile">
+              <ButtonM
+                variant="contained"
+                style={{
+                  paddingTop: "15px",
+                  paddingBottom: "15px",
+                  borderRadius: "30px",
+                  backgroundColor: "black",
+                }}
+                onClick={() => {
+                  console.log("mobile");
+                  pushPageURL("/" + "contact");
+                }}
+              >
+                <Texts size={16}>{i18n.t("ContactInfo")}</Texts>
+              </ButtonM>
+            </div>
+          </Col>
+        </Row>
+      </div>
     );
   };
 
@@ -191,25 +209,12 @@ const Home = (props: Props) => {
 
   //render main
   return (
-    <Row className="web-content home-content">
-      <Col xs={24} sm={24} md={24} lg={24} xl={8} xxl={8} className="">
-        <div className="home-social">{renderlistsocial()}</div>
-      </Col>
-      <Col
-        xs={24}
-        sm={24}
-        md={24}
-        lg={24}
-        xl={0}
-        xxl={0}
-        style={{ textAlign: "center" }}
-      >
+    <div className="web-content home-content">
+      <div>
         <div className="home-social">{renderimgsvg()}</div>
-      </Col>
-      <Col xs={24} sm={24} md={24} lg={24} xl={8} xxl={8}>
-        {renderhomedetail()}
-      </Col>
-    </Row>
+      </div>
+      <div>{renderhomedetail()}</div>
+    </div>
   );
 };
 

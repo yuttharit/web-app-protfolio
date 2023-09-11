@@ -14,6 +14,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import WorkIcon from "@mui/icons-material/Work";
 import { Button } from "@mui/material";
 import Service from "../components/ServiceProvider";
+import i18n from "../components/i18n";
 
 moment.locale("th");
 
@@ -48,6 +49,7 @@ const Qulification = (props: Props) => {
   //fetch data
 
   const fetcheducation = () => {
+    seteducation(constructure_data.EDUCATION_INFO.EDUCATION_INFO);
     Service.FetchEducation()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -63,6 +65,7 @@ const Qulification = (props: Props) => {
   };
 
   const fetchwork = () => {
+    setwork(constructure_data.WORK.WORK);
     Service.FetchWork()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -91,21 +94,32 @@ const Qulification = (props: Props) => {
 
   const renderheader = () => {
     const options: any = [
-      { value: "education", label: "Education", icons: <SchoolIcon /> },
+      { value: "education", label: i18n.t("Education"), icons: <SchoolIcon /> },
       config_constructure.can_show_internship && {
         value: "internship",
         label: "Internship",
         icons: <SchoolIcon />,
       },
-      { value: "work", label: "Work", icons: <WorkIcon /> },
+      { value: "work", label: i18n.t("Work"), icons: <WorkIcon /> },
     ].filter(Boolean);
 
     return _.map(options, (item, index) => {
       return (
         <Button
+          // className="btn-select-qul"
+          variant={onvalue == item.value ? "outlined" : "contained"}
           key={index}
           startIcon={item.icons}
-          style={{ width: "150px", marginRight: "10px", marginLeft: "10px" }}
+          style={{
+            backgroundColor: onvalue == item.value ? "#DFD3C3" : "#C7B198",
+            width: "250px",
+            marginRight: "10px",
+            marginLeft: "10px",
+            marginTop: "10px",
+            paddingTop: "10px",
+            paddingBottom: " 10px",
+            borderRadius: "2rem",
+          }}
           onClick={() => {
             setonvalue(item.value);
           }}
@@ -123,15 +137,16 @@ const Qulification = (props: Props) => {
       ? education.map((item: any, index: number) => {
           data.push({
             id: index,
-            dot:
-              item.ED_STATUS == "1" ? (
-                <CheckCircleOutlined style={{ color: "green" }} />
-              ) : null,
+            // dot:
+            //   item.ED_STATUS == "1" ? (
+            //     <CheckCircleOutlined style={{ color: "green" }} />
+            //   ) : null,
             children: (
-              <>
+              <div className="timeline-border">
                 <div>
                   <Texts size={22}>{item.ED_QUALIFI}</Texts>
                 </div>
+                {/* // */}
                 <div style={{ paddingTop: "5px" }}>
                   <Texts size={15} weight="thin">
                     {item?.MAJOR
@@ -141,6 +156,7 @@ const Qulification = (props: Props) => {
                       : null}
                   </Texts>
                 </div>
+                {/* // */}
                 {item?.FACULTY ? (
                   <div>
                     <Texts
@@ -149,11 +165,13 @@ const Qulification = (props: Props) => {
                     >{`คณะ ${item?.FACULTY}`}</Texts>
                   </div>
                 ) : null}
+                {/* // */}
                 <div style={{ paddingTop: "15px" }}>
                   <Texts size={18} color="gray">
                     {item?.SCHOOL_NAME}
                   </Texts>
                 </div>
+                {/* // */}
                 <div>
                   <CalendarOutlined style={{ color: "gray" }} />
                   {item?.ED_START && (
@@ -167,22 +185,23 @@ const Qulification = (props: Props) => {
                     </Texts>
                   )}
                 </div>
-              </>
+              </div>
             ),
           });
         })
       : work.map((item: any, index: number) => {
           data.push({
             id: index,
-            dot:
-              item.WORK_STATUS == "1" ? (
-                <CheckCircleOutlined style={{ color: "green" }} />
-              ) : null,
+            // dot:
+            //   item.WORK_STATUS == "1" ? (
+            //     <CheckCircleOutlined style={{ color: "green" }} />
+            //   ) : null,
             children: (
-              <>
+              <div className="timeline-border">
                 <div>
                   <Texts size={22}>{item.POSITION}</Texts>
                 </div>
+                {/* // */}
                 <div style={{ paddingTop: "5px" }}>
                   <Texts size={15} weight="thin">
                     {item.WORK_NAME_EN}
@@ -195,6 +214,7 @@ const Qulification = (props: Props) => {
                       )
                     : null}
                 </div>
+                {/* // */}
                 <div>
                   <Texts size={15} weight="thin">
                     {item.WORK_TYPE == "1"
@@ -202,6 +222,7 @@ const Qulification = (props: Props) => {
                       : "Employment Agreement"}
                   </Texts>
                 </div>
+                {/* // */}
                 <div style={{ paddingTop: "20px" }}>
                   <CalendarOutlined style={{ color: "gray" }} />
                   {item?.WORK_START && (
@@ -219,7 +240,7 @@ const Qulification = (props: Props) => {
                     </Texts>
                   )}
                 </div>
-              </>
+              </div>
             ),
           });
         });
@@ -241,12 +262,13 @@ const Qulification = (props: Props) => {
   return (
     <div className="web-content qulifi-content">
       <div className="content-title">
-        <Texts size={20} weight="bold">
-          Qulification
+        <Texts size={20} weight="thin">
+          {i18n.t("pagequlificationtitle")}
         </Texts>
+
         <div className="content-sub-title">
-          <Texts size={16} weight="thin">
-            My personal journey
+          <Texts size={40} weight="bold">
+            {i18n.t("pagequlificationsubtitle")}
           </Texts>
         </div>
       </div>

@@ -1,8 +1,6 @@
 :root {
-  --main-color: "#190019";
-  --second-color: "#2B124C";
-  --third-color: "#522B5B";
-  --fourth-color: "#854F6C";
-  --fifth-color: "#DFB6B2";
-  --sixth-color: "#FBE4D8";
+  --app-main-color: "#F0ECE3";
+  --app-second-color: "#DFD3C3";
+  --app-third-color: "#C7B198";
+  --app-fourth-color: "#596E79";
 }

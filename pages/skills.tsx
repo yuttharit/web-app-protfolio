@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import constructure_data from "../utils/constructure_data";
 import _ from "lodash";
-import { Card, List, Progress, Rate, Collapse, message } from "antd";
+import { Card, List, Progress, Rate, Collapse, message, Row, Col } from "antd";
 import Texts from "../components/Texts";
 import DataObjectIcon from "@mui/icons-material/DataObject";
 import StorageIcon from "@mui/icons-material/Storage";
@@ -11,6 +11,8 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import Service from "../components/ServiceProvider";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import i18n from "../components/i18n";
 
 const { Panel } = Collapse;
 
@@ -34,6 +36,7 @@ const Skills = (props: Props) => {
   //fetch data
 
   const fetchdataskills = () => {
+    setskills(constructure_data.SKILLS_PROGRAMMING.SKILLS_PROGRAMMING);
     Service.FetchSkills()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -47,6 +50,7 @@ const Skills = (props: Props) => {
         setskills(constructure_data.SKILLS_PROGRAMMING.SKILLS_PROGRAMMING);
       });
   };
+
   //fetch data
 
   //control
@@ -56,65 +60,75 @@ const Skills = (props: Props) => {
   //render
 
   const renderlistskills = () => {
+    const desc = [
+      i18n.t("bad"),
+      i18n.t("basic"),
+      i18n.t("intermediate"),
+      i18n.t("experienced"),
+      i18n.t("wonderful"),
+    ];
+
+    console.log("desc => ", desc);
+
     return (
-      <Collapse
-        ghost
-        defaultActiveKey={[0, 1]}
-        bordered={false}
-        expandIcon={({ isActive }) => {
-          return <DoubleLeftOutlined rotate={isActive ? -90 : 90} style={{}} />;
-        }}
-        expandIconPosition={"end"}
-        onChange={(e) => {
-          // console.log("=>", e);
-        }}
-        className="skills-collapse"
-      >
+      <Row>
         {_.map(skills, (item, index) => {
           return (
-            <Panel
-              key={index}
-              forceRender={true}
-              header={
-                <div>
-                  <Texts className="skills-title">{item.TITLE_INFO}</Texts>
+            <Col key={index} xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
+              <div className="skill-border-main">
+                <div style={{ textAlign: "center" }}>
+                  <Texts size={25} weight="bold" color="#596E79">
+                    {item.TITLE_INFO}
+                  </Texts>
                   <div>
-                    <Texts className="skills-subtitle">{item.DESC_INFO}</Texts>
-                  </div>
-                </div>
-              }
-              style={{ width: "100%" }}
-            >
-              {_.map(item.SKILLS, (item, index) => {
-                let on_percentage = (item.SKILL_RATE / 5) * 100;
-                const desc = ["bad", "normal", "good", "great", "wonderful"];
-                return (
-                  <div className="skills-data" key={index}>
-                    <div className="skills-title">
-                      <div className="skills-name">
-                        <Texts>{item.SKILLS_NAME}</Texts>
-                      </div>
-                      <div className="skills-number">
-                        <Texts>{`${on_percentage} %`}</Texts>
-                      </div>
-                    </div>
-
-                    <Rate disabled defaultValue={item.SKILL_RATE} />
-
-                    <Texts
-                      className="ant-rate-text"
-                      style={{ paddingLeft: "10px" }}
-                      size={15}
-                    >
-                      {desc[item.SKILL_RATE - 1]}
+                    <Texts size={16} weight="bold" color="#596E79">
+                      {item.DESC_INFO}
                     </Texts>
                   </div>
-                );
-              })}
-            </Panel>
+                </div>
+                <div className="skill-list">
+                  <List
+                    className="skill-box"
+                    grid={{
+                      gutter: 24,
+                      xs: 1,
+                      sm: 1,
+                      md: 1,
+                      lg: 2,
+                      xl: 2,
+                      xxl: 2,
+                    }}
+                    dataSource={item.SKILLS}
+                    renderItem={(item: any, index: number) => {
+                      return (
+                        <List.Item key={index}>
+                          <Row align={"middle"} style={{ width: "100%" }}>
+                            <Col span={8}>
+                              <VerifiedIcon />
+                            </Col>
+                            <Col span={12}>
+                              <Row>
+                                <Col span={24}>
+                                  <Texts>{item.SKILLS_NAME}</Texts>
+                                </Col>
+                                <Col span={24}>
+                                  <Texts className="ant-rate-text" size={15}>
+                                    {desc[item.SKILL_RATE - 1]}
+                                  </Texts>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </List.Item>
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+            </Col>
           );
         })}
-      </Collapse>
+      </Row>
     );
   };
 
@@ -124,12 +138,12 @@ const Skills = (props: Props) => {
   return (
     <div className="web-content skills-content">
       <div className="content-title">
-        <Texts size={20} weight="bold">
-          Skills
+        <Texts size={20} weight="thin">
+          {i18n.t("pageskilltitle")}
         </Texts>
         <div className="content-sub-title">
-          <Texts size={16} weight="thin">
-            My technical level
+          <Texts size={40} weight="bold">
+            {i18n.t("pageskillsubtitle")}
           </Texts>
         </div>
       </div>

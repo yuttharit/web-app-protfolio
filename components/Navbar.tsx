@@ -7,6 +7,7 @@ import Texts from "./Texts";
 import Router from "next/router";
 import SvgFile from "../utils/SvgFile";
 import Service from "./ServiceProvider";
+import config_constructure from "../utils/config_constructure";
 
 type Props = {
   onfunction: any;
@@ -31,6 +32,7 @@ const Navbar = (props: Props) => {
   //fetch data
 
   const fetchdatamenu = () => {
+    setmenu(constructure_data.MENU_WEB.MENU_WEB);
     Service.FetchMenuBar()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -61,11 +63,22 @@ const Navbar = (props: Props) => {
     props.onfunction(test?.PAGE_PATH);
   };
 
+  const filterMenu = (arrID: any = [], arrMenu: any) => {
+    return arrID.indexOf(parseInt(arrMenu.MENU_ID)) == -1;
+  };
+
   //control
 
   //render
 
   const rendermenumain = () => {
+    let data: any = [];
+    _.map(menu, (item, index) => {
+      data.push({
+        MENU_ID: index,
+        ...item,
+      });
+    });
     return (
       <>
         <div
@@ -76,7 +89,10 @@ const Navbar = (props: Props) => {
         >
           <Texts>หน้าหลัก</Texts>
         </div>
-        {_.filter(menu, (item, index) => index != 2).map((item: any, index) => {
+        {_.filter(
+          data,
+          filterMenu.bind(this, config_constructure.menu_bind)
+        ).map((item, index) => {
           return (
             <div
               key={index}
@@ -94,6 +110,13 @@ const Navbar = (props: Props) => {
   };
 
   const rendermenumainmobile = () => {
+    let data: any = [];
+    _.map(menu, (item, index) => {
+      data.push({
+        MENU_ID: index,
+        ...item,
+      });
+    });
     return (
       <>
         <div
@@ -105,7 +128,10 @@ const Navbar = (props: Props) => {
         >
           <Texts>Home</Texts>
         </div>
-        {_.map(menu, (item: any, index: number) => {
+        {_.filter(
+          data,
+          filterMenu.bind(this, config_constructure.menu_bind)
+        ).map((item: any, index: number) => {
           return (
             <div
               key={index}
@@ -131,7 +157,6 @@ const Navbar = (props: Props) => {
     <Affix offsetTop={0}>
       <div className="menu-main">
         <div className="menu-main-left">
-          {/* <SvgFile name={"portfoilo"} width={110} height={110} fill={"red"} /> */}
           <img
             src="/static/icons/portfolio.svg"
             style={{ maxWidth: "50px", width: "100%", borderRadius: "10px" }}
@@ -140,6 +165,7 @@ const Navbar = (props: Props) => {
         <div className="menu-main-right">{rendermenumain()}</div>
         <div className="menu-main-right-mobile">
           <Button
+            className="btn-show-menu"
             type="primary"
             icon={<CaretLeftOutlined />}
             style={{ width: "50px" }}

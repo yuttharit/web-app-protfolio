@@ -8,6 +8,8 @@ import Carousel from "react-images";
 import { Modal as UModal } from "@mui/material";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import Service from "../components/ServiceProvider";
+import config_constructure from "../utils/config_constructure";
+import i18n from "../components/i18n";
 
 const { Meta } = Card;
 
@@ -20,7 +22,8 @@ type Props = {
 const Portfolio = (props: Props) => {
   const [portfoilo, setportfoilo] = useState<any>([]);
   const [selected_project, setselected_project] = useState<any>(null);
-  const [is_visable, setis_visable] = useState<any>(false);
+  const [is_modaldetail, setis_modaldetail] = useState<any>(false);
+  const [is_modalpic, setis_modalpic] = useState<any>(false);
   const [modalIsOpen, setmodalIsOpen] = useState<any>(false);
   //function
 
@@ -38,6 +41,7 @@ const Portfolio = (props: Props) => {
   //fetch data
 
   const fetchdataportfolio = () => {
+    setportfoilo(constructure_data.PORTFOLIO.PORTFOLIO);
     Service.FetchPortfolio()
       .then((res) => {
         if (!!res.data && res.data.RESULT) {
@@ -96,31 +100,50 @@ const Portfolio = (props: Props) => {
           }}
           style={{ padding: "5px" }}
           dataSource={data}
-          renderItem={(item: any) => {
+          renderItem={(item: any, index: number) => {
             return (
-              <List.Item key={item.id}>
-                <Card
-                  hoverable
-                  className="card-list-menu"
-                  cover={
-                    <div className="img-cover-list-menu">
-                      <img alt="example" src={item.project_icons} />
+              <List.Item key={index}>
+                <Card className="card-list-menu">
+                  <div>
+                    <div className="card-img-block">
+                      <img
+                        alt="example"
+                        src={item.project_icons}
+                        style={{ width: "120px" }}
+                      />
                     </div>
-                  }
-                  onClick={() => {
-                    setselected_project(item);
-                    setis_visable(true);
-                  }}
-                >
-                  <Meta
-                    className="meta-banner"
-                    title={
-                      <Texts size={16} weight="bold">
-                        {item.project_name}
-                      </Texts>
-                    }
-                    description={<Texts size={13}>{item.project_desc}</Texts>}
-                  />
+                  </div>
+                  <div style={{ paddingTop: "15px", textAlign: "center" }}>
+                    <Texts size={16} weight="bold">
+                      {item.project_name}
+                    </Texts>
+                  </div>
+                  <Row className="port-btn" style={{}}>
+                    <Col span={config_constructure.can_show_project ? 12 : 24}>
+                      <Button
+                        type="dashed"
+                        onClick={() => {
+                          setselected_project(item);
+                          setis_modaldetail(true);
+                        }}
+                      >
+                        {i18n.t("details")}
+                      </Button>
+                    </Col>
+                    {config_constructure.can_show_project ? (
+                      <Col span={12}>
+                        <Button
+                          className="btn-show-pic"
+                          onClick={() => {
+                            setselected_project(item);
+                            setis_modalpic(true);
+                          }}
+                        >
+                          {i18n.t("Examplepicture")}
+                        </Button>
+                      </Col>
+                    ) : null}
+                  </Row>
                 </Card>
               </List.Item>
             );
@@ -130,7 +153,7 @@ const Portfolio = (props: Props) => {
     );
   };
 
-  const rendermodalport = () => {
+  const rendermodaldetailproject = () => {
     return (
       <Modal
         title={
@@ -140,10 +163,10 @@ const Portfolio = (props: Props) => {
             </Texts>
           </div>
         }
-        open={selected_project && is_visable}
+        open={selected_project && is_modaldetail}
         onCancel={() => {
           setselected_project(null);
-          setis_visable(false);
+          setis_modaldetail(false);
         }}
         footer={false}
       >
@@ -151,14 +174,14 @@ const Portfolio = (props: Props) => {
           <Texts size={16} weight="thin" color="gray">
             {selected_project?.project_desc}
           </Texts>
-          <div style={{ paddingTop: "5px" }}>{renderGalaryImg()}</div>
         </div>
       </Modal>
     );
   };
 
-  const renderGalaryImg: any = () => {
+  const rendermodaldetailprojectpicture = () => {
     let photo: any = [];
+
     _.map(selected_project?.project_detail, (item: any, index: number) => {
       if (item.DETAIL_IMG1) {
         photo.push({
@@ -247,49 +270,69 @@ const Portfolio = (props: Props) => {
       }
     });
 
-    return photo.length > 0 ? (
-      <div>
-        <Gallery
-          photos={photo}
-          direction={"row"}
-          onClick={(e) => {
-            toggleModal(e);
-          }}
-        />
-        <UModal
-          keepMounted
-          open={modalIsOpen}
-          onClose={(e) => {
-            toggleModal(e);
-          }}
-        >
-          <div>
-            <div
-              style={{
-                textAlign: "right",
-                paddingTop: "10px",
-                paddingRight: "20px",
-              }}
-            >
-              <Button
-                type="text"
-                icon={
-                  <CloseCircleOutlined
-                    style={{ fontSize: "30px", color: "white" }}
-                  />
-                }
+    return (
+      <Modal
+        title={
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Texts size={20} weight="bold">
+              {selected_project?.project_name}
+            </Texts>
+          </div>
+        }
+        open={selected_project && is_modalpic}
+        onCancel={() => {
+          setselected_project(null);
+          setis_modalpic(false);
+        }}
+        footer={false}
+      >
+        <div style={{ paddingTop: "25px" }}>
+          {photo.length > 0 ? (
+            <div>
+              <Gallery
+                photos={photo}
+                direction={"row"}
                 onClick={(e) => {
                   toggleModal(e);
                 }}
               />
+              <UModal
+                keepMounted
+                open={modalIsOpen}
+                onClose={(e) => {
+                  toggleModal(e);
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      textAlign: "right",
+                      paddingTop: "10px",
+                      paddingRight: "20px",
+                    }}
+                  >
+                    <Button
+                      type="text"
+                      icon={
+                        <CloseCircleOutlined
+                          style={{ fontSize: "30px", color: "white" }}
+                        />
+                      }
+                      onClick={(e) => {
+                        toggleModal(e);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <Carousel views={photo} />
+                  </div>
+                </div>
+              </UModal>
             </div>
-            <div>
-              <Carousel views={photo} />
-            </div>
-          </div>
-        </UModal>
-      </div>
-    ) : null;
+          ) : null}
+        </div>
+      </Modal>
+    );
   };
 
   //render
@@ -299,17 +342,18 @@ const Portfolio = (props: Props) => {
   return (
     <div className="web-content port-content">
       <div className="content-title">
-        <Texts size={20} weight="bold">
-          Portfolio
+        <Texts size={20} weight="thin">
+          {i18n.t("pageportfoliotitle")}
         </Texts>
         <div className="content-sub-title">
-          <Texts size={16} weight="thin">
-            Most recent work
+          <Texts size={40} weight="bold">
+            {i18n.t("pageportfoliosubtitle")}
           </Texts>
         </div>
       </div>
       <div className="body-menu-list">{renderportfolio()}</div>
-      {rendermodalport()}
+      {rendermodaldetailproject()}
+      {rendermodaldetailprojectpicture()}
     </div>
   );
 };
