@@ -77,8 +77,10 @@ const About = (props: Props) => {
       data.push({
         id: index,
         title: item.TITLE_INFO,
-        title_desc: item.TITLE_DESC,
-        title_detail: item.TITLE_DETAIL,
+        title_desc:
+          i18n.language == "th" ? item.TITLE_DESC : item.TITLE_DESC_EN,
+        title_detail:
+          i18n.language == "th" ? item.TITLE_DETAIL : item.TITLE_DETAIL_EN,
         icons:
           item.TITLE_DETAIL_EN == "experience" ? (
             <MilitaryTechIcon />
@@ -171,9 +173,13 @@ const About = (props: Props) => {
           className="about-info-data-detail"
         >
           <div className="about-info-frame">{renderaboutinfo()}</div>
-          <div style={{ paddingTop: "50px" }}>
+          <div style={{ paddingTop: "50px", paddingRight: "20px" }}>
             <div className="about-description">
-              <Texts>{aboutdesc.ABOUT_DESC}</Texts>
+              <Texts>
+                {i18n.language == "th"
+                  ? aboutdesc.ABOUT_DESC
+                  : aboutdesc.ABOUT_DESC_EN}
+              </Texts>
             </div>
           </div>
         </Col>

@@ -19,6 +19,7 @@ const Footer = (props: Props) => {
   const [fullname, setfullname] = useState<any>(null);
   const [fullname_en, setfullname_en] = useState<any>(null);
   const [address, setaddress] = useState<any>(null);
+  const [address_en, setaddress_en] = useState<any>(null);
   const [phone_number, setphone_number] = useState<any>(null);
 
   //function
@@ -56,6 +57,7 @@ const Footer = (props: Props) => {
     setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
     setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
     setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+    setaddress_en(constructure_data.PROFILE_INFO.ADDRESS_EN);
     setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
     Service.FetchProfileInfo()
       .then((res) => {
@@ -64,12 +66,14 @@ const Footer = (props: Props) => {
           setfullname(res.data.FULL_NAME);
           setfullname_en(res.data.FULL_NAME_EN);
           setaddress(res.data.ADDRESS);
+          setaddress_en(res.data.ADDRESS_EN);
           setphone_number(res.data.PHONE_NUMBER);
         } else {
           setprofileData(constructure_data.PROFILE_INFO);
           setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
           setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
           setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+          setaddress_en(constructure_data.PROFILE_INFO.ADDRESS_EN);
           setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
         }
       })
@@ -79,6 +83,7 @@ const Footer = (props: Props) => {
         setfullname(constructure_data.PROFILE_INFO.FULL_NAME);
         setfullname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
         setaddress(constructure_data.PROFILE_INFO.ADDRESS);
+        setaddress_en(constructure_data.PROFILE_INFO.ADDRESS_EN);
         setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
       });
   };
@@ -137,7 +142,9 @@ const Footer = (props: Props) => {
               changePage(menu.PAGE_PATH);
             }}
           >
-            <Texts size={14}>{menu.MENU_NAME}</Texts>
+            <Texts size={14}>
+              {i18n.language == "th" ? menu.MENU_NAME : menu.MENU_NAME_EN}
+            </Texts>
           </div>
         </Col>
       );
@@ -148,25 +155,27 @@ const Footer = (props: Props) => {
     let data: any = [];
     _.map(socialData, (item, index) => {
       item.IS_USE == "1"
-        ? data.push({
-            id: index,
-            path:
-              item.URL_TYPE == "line"
-                ? item.URL_PATH
-                : item.URL_TYPE == "email"
-                ? `mailto: ${item.URL_PATH}`
-                : null,
-            icon:
-              item.URL_TYPE == "line" ? (
-                <object
-                  type="image/png"
-                  data={`/static/icons/line.png`}
-                  style={{ width: "1em", cursor: "pointer" }}
-                ></object>
-              ) : item.URL_TYPE == "email" ? (
-                <MailOutlined />
-              ) : null,
-          })
+        ? item.URL_TYPE != "phonenumber"
+          ? data.push({
+              id: index,
+              path:
+                item.URL_TYPE == "line"
+                  ? item.URL_PATH
+                  : item.URL_TYPE == "email"
+                  ? `mailto: ${item.URL_PATH}`
+                  : null,
+              icon:
+                item.URL_TYPE == "line" ? (
+                  <object
+                    type="image/png"
+                    data={`/static/icons/line.png`}
+                    style={{ width: "1em", cursor: "pointer" }}
+                  ></object>
+                ) : item.URL_TYPE == "email" ? (
+                  <MailOutlined />
+                ) : null,
+            })
+          : null
         : null;
     });
     return _.map(data, (item) => {
@@ -211,8 +220,14 @@ const Footer = (props: Props) => {
           >
             <div className="footer-title">{i18n.t("address")}</div>
             <div style={{ paddingTop: 5 }}>
-              <p>{fullname}</p>
-              <p>{address ? address : null}</p>
+              <p>{i18n.language == "th" ? fullname : fullname_en}</p>
+              <p>
+                {address
+                  ? i18n.language == "th"
+                    ? address
+                    : address_en
+                  : null}
+              </p>
             </div>
           </Col>
           <Col

@@ -71,17 +71,20 @@ const Portfolio = (props: Props) => {
   const renderportfolio = () => {
     let data: any = [];
     _.map(portfoilo, (item, index) => {
+      console.log("=>", item);
       data.push({
         id: index,
-        project_name: item.PORTFOLIO_NAME,
-        project_desc: item.PORTFOLIO_DESC,
+        project_name:
+          i18n.language == "th" ? item.PORTFOLIO_NAME : item.PORTFOLIO_NAME_EN,
+        project_desc:
+          i18n.language == "th" ? item.PORTFOLIO_DESC : item.PORTFOLIO_DESC_EN,
         project_detail: item.PORTFOLIO_DETAIL,
         project_icons:
           item.PORTFOLIO_NAME_EN == "Webadmin Mobile for cooperative"
             ? "../static/icons/mood-board.svg"
             : item.PORTFOLIO_NAME_EN == "Webportal for cooperative"
             ? "../static/icons/online-lesson.svg"
-            : item.PORTFOLIO_NAME_EN == "WebSite for cooperative"
+            : item.PORTFOLIO_NAME_EN == "Website for cooperative"
             ? "../static/icons/responsive.svg"
             : null,
       });

@@ -103,6 +103,8 @@ export default {
     RELIGION_EN: "",
     PHONE_NUMBER: "081-9630728",
     ADDRESS: "26 ซ.10 ถ.ไทรบุรี ต.บ่อบาง อ.เมือง จ.สงขลา 90000",
+    ADDRESS_EN:
+      "26 SOI 10 SAIBURU ROAD T.BORYANG A.MUANG  SONGKHLA PROVINCE 90000",
     JOB_CUR: "Fullstack Developer",
   },
   SOCIAL_DETAIL: {
@@ -173,7 +175,7 @@ export default {
         DEPARTMENT: "",
         DEPARTMENT_EN: "",
         ED_QUALIFI: "ปริญญาตรี (เทคโนโลยีบัณฑิต)",
-        ED_QUALIFI_EN: "",
+        ED_QUALIFI_EN: "Bachelor of Technology",
         ED_GRADE: "2.70",
         ED_STATUS: "1",
         ED_START: "2018/7/14",
@@ -189,7 +191,7 @@ export default {
         DEPARTMENT: "เทคโนโลยีสารสนเทศและการสื่อสาร",
         DEPARTMENT_EN: "Information Technology",
         ED_QUALIFI: "ประกาศนียบัตรวิชาชีพชั้นสูง",
-        ED_QUALIFI_EN: "",
+        ED_QUALIFI_EN: "Higher Vocational Certificate",
         ED_GRADE: "2.85",
         ED_STATUS: "1",
         ED_START: "2016/4/16",
@@ -205,7 +207,7 @@ export default {
         DEPARTMENT: "คอมพิวเตอร์ธุรกิจ",
         DEPARTMENT_EN: "Business Computer",
         ED_QUALIFI: "ประกาศนียบัตรวิชาชีพ",
-        ED_QUALIFI_EN: "",
+        ED_QUALIFI_EN: "Vocational Certificate",
         ED_GRADE: "",
         ED_STATUS: "1",
         ED_START: null,
@@ -224,8 +226,8 @@ export default {
         WORK_TYPE: "3",
         POSITION: "Service Desk Support",
         WORK_STATUS: "1",
-        WORK_START: "2020/9/5",
-        WORK_END: "2021/3/26",
+        WORK_START: "2020/10/5",
+        WORK_END: "2021/4/26",
         JOB_DESC: "",
         JOB_DESC_EN: "",
       },
@@ -235,7 +237,7 @@ export default {
         WORK_TYPE: "1",
         POSITION: "Full Stack Developer",
         WORK_STATUS: "0",
-        WORK_START: "2021/4/25",
+        WORK_START: "2021/5/25",
         WORK_END: null,
         JOB_DESC: "",
         JOB_DESC_EN: "",
@@ -291,7 +293,7 @@ export default {
         PORTFOLIO_DESC:
           "เว็บสำหรับจัดการข้อมูล โมบายแอพ จัดการข้อมูลสหกรณ์ออนไลน์ และจัดการข้อมูลเว็บไซต์สหกรณ์",
         PORTFOLIO_DESC_EN:
-          "Web for mobile app data management Online data management and website data management paralysis",
+          "Web for mobile app data management Online data management and website data management",
         PORTFOLIO_IMG: "",
         PORTFOLIO_DETAIL: [
           {
@@ -333,7 +335,7 @@ export default {
       },
       {
         PORTFOLIO_NAME: "เว็บไซต์สำหรับสหกรณ์",
-        PORTFOLIO_NAME_EN: "WebSite for cooperative",
+        PORTFOLIO_NAME_EN: "Website for cooperative",
         PORTFOLIO_DESC: "เว็บไซต์สำหรับแสดงข้อมูลสหกรณ์",
         PORTFOLIO_DESC_EN: "cooperative website",
         PORTFOLIO_IMG: "",

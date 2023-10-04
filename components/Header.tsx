@@ -8,7 +8,6 @@ type Props = {
 };
 
 const Header = (props: Props) => {
-  console.log("props", props);
   //function
 
   //function

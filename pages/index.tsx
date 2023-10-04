@@ -25,7 +25,9 @@ type Props = {
 const Home = (props: Props) => {
   const [social, setsocial] = useState<any>([]);
   const [name, setname] = useState<any>(null);
+  const [name_en, setname_en] = useState<any>(null);
   const [nickname, setnickname] = useState<any>(null);
+  const [nickname_en, setnickname_en] = useState<any>(null);
   const [phone_number, setphone_number] = useState<any>(null);
   const [job_position, setjob_position] = useState<any>(null);
   const [description, setdescription] = useState<any>(null);
@@ -45,6 +47,7 @@ const Home = (props: Props) => {
 
   const fetchprofile = () => {
     setname(constructure_data.PROFILE_INFO.FULL_NAME);
+    setname_en(constructure_data.PROFILE_INFO.FULL_NAME_EN);
     setnickname(constructure_data.PROFILE_INFO.NICK_NAME);
     setjob_position(constructure_data.PROFILE_INFO.JOB_CUR);
     setphone_number(constructure_data.PROFILE_INFO.PHONE_NUMBER);
@@ -129,7 +132,9 @@ const Home = (props: Props) => {
         }}
       >
         <div className="detail-title">{i18n.t("Greeting")}</div>
-        <div className="detail-title-name">{name}</div>
+        <div className="detail-title-name">
+          {i18n.language == "th" ? name : name_en}
+        </div>
         <div className="detail-title-job">{job_position}</div>
         <Row style={{ paddingTop: "20px", paddingBottom: "20px" }}>
           <Col
@@ -149,6 +154,7 @@ const Home = (props: Props) => {
                 borderRadius: "30px",
                 color: "black",
                 borderColor: "black",
+                width: "200px",
               }}
               href="/static/files/portfolio_ys.png"
               target="_blank"
@@ -173,6 +179,7 @@ const Home = (props: Props) => {
                   paddingBottom: "15px",
                   borderRadius: "30px",
                   backgroundColor: "black",
+                  width: "200px",
                 }}
                 onClick={() => {
                   console.log("web");
@@ -190,6 +197,7 @@ const Home = (props: Props) => {
                   paddingBottom: "15px",
                   borderRadius: "30px",
                   backgroundColor: "black",
+                  width: "200px",
                 }}
                 onClick={() => {
                   console.log("mobile");

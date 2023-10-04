@@ -8,6 +8,10 @@ import Router from "next/router";
 import SvgFile from "../utils/SvgFile";
 import Service from "./ServiceProvider";
 import config_constructure from "../utils/config_constructure";
+import i18n from "./i18n";
+import { asyncLocalStorage } from "../utils/function";
+import Storage from "./Storage";
+import { Button as ButtonM } from "@mui/material";
 
 type Props = {
   onfunction: any;
@@ -67,6 +71,13 @@ const Navbar = (props: Props) => {
     return arrID.indexOf(parseInt(arrMenu.MENU_ID)) == -1;
   };
 
+  //เปลี่ยนสถานะ Setting ภาษา
+  const changeLanguage = async (value: any) => {
+    await asyncLocalStorage.setItem(Storage["LANGUAGE_LOCALE"], value);
+
+    i18n.changeLanguage(value);
+  };
+
   //control
 
   //render
@@ -87,7 +98,7 @@ const Navbar = (props: Props) => {
             ontest();
           }}
         >
-          <Texts>หน้าหลัก</Texts>
+          <Texts>{i18n.language == "th" ? "หน้าหลัก" : "Home"}</Texts>
         </div>
         {_.filter(
           data,
@@ -101,10 +112,13 @@ const Navbar = (props: Props) => {
                 ontest(item);
               }}
             >
-              <Texts>{item.MENU_NAME}</Texts>
+              <Texts>
+                {i18n.language == "th" ? item.MENU_NAME : item.MENU_NAME_EN}
+              </Texts>
             </div>
           );
         })}
+        {config_constructure.can_change_language && renderchangelangaue()}
       </>
     );
   };
@@ -126,7 +140,9 @@ const Navbar = (props: Props) => {
             onpreview();
           }}
         >
-          <Texts>Home</Texts>
+          <Texts>
+            <Texts>{i18n.language == "th" ? "หน้าหลัก" : "Home"}</Texts>
+          </Texts>
         </div>
         {_.filter(
           data,
@@ -141,11 +157,44 @@ const Navbar = (props: Props) => {
                 onpreview();
               }}
             >
-              <Texts>{item.MENU_NAME}</Texts>
+              <Texts>
+                {i18n.language == "th" ? item.MENU_NAME : item.MENU_NAME_EN}
+              </Texts>
             </div>
           );
         })}
       </>
+    );
+  };
+
+  const renderchangelangaue = () => {
+    return (
+      <div>
+        <div>
+          <ButtonM
+            onClick={() => {
+              changeLanguage("th");
+            }}
+            style={{ borderRadius: 0 }}
+          >
+            <span className={i18n.language == "th" ? "link-text" : ""}>
+              ไทย
+            </span>
+          </ButtonM>
+        </div>
+        <div>
+          <ButtonM
+            onClick={() => {
+              changeLanguage("en");
+            }}
+            style={{ borderRadius: 0 }}
+          >
+            <span className={i18n.language == "en" ? "link-text" : ""}>
+              English
+            </span>
+          </ButtonM>
+        </div>
+      </div>
     );
   };
 

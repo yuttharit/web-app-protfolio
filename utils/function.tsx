@@ -41,3 +41,21 @@ export const RequestFunction = async function RequestService(
       }
     });
 };
+
+export const asyncLocalStorage = {
+  setItem: async function (key?: any, value?: any) {
+    return Promise.resolve().then(function () {
+      localStorage.setItem(key, value);
+    });
+  },
+  getItem: async function (key?: any, value?: any) {
+    return Promise.resolve().then(function () {
+      return localStorage.getItem(key);
+    });
+  },
+  removeItem: async function (key?: any, value?: any) {
+    return Promise.resolve().then(function () {
+      return localStorage.removeItem(key);
+    });
+  },
+};

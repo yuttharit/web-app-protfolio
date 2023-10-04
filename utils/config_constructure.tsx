@@ -5,5 +5,6 @@ export default {
   // root_path_service: "http://localhost:3001",
   can_show_internship: false,
   can_show_project: false,
+  can_change_language: false,
   menu_bind: [3],
 };

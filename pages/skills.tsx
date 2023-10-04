@@ -68,8 +68,6 @@ const Skills = (props: Props) => {
       i18n.t("wonderful"),
     ];
 
-    console.log("desc => ", desc);
-
     return (
       <Row>
         {_.map(skills, (item, index) => {
@@ -78,11 +76,15 @@ const Skills = (props: Props) => {
               <div className="skill-border-main">
                 <div style={{ textAlign: "center" }}>
                   <Texts size={25} weight="bold" color="#596E79">
-                    {item.TITLE_INFO}
+                    {i18n.language == "th"
+                      ? item.TITLE_INFO
+                      : item.TITLE_INFO_EN}
                   </Texts>
                   <div>
                     <Texts size={16} weight="bold" color="#596E79">
-                      {item.DESC_INFO}
+                      {i18n.language == "th"
+                        ? item.DESC_INFO
+                        : item.DESC_INFO_EN}
                     </Texts>
                   </div>
                 </div>

@@ -26,7 +26,7 @@ type Props = {
 const Qulification = (props: Props) => {
   const [work, setwork] = useState<any>([]);
   const [education, seteducation] = useState<any>([]);
-  const [onvalue, setonvalue] = useState<string>("education");
+  const [onvalue, setonvalue] = useState<string>("work");
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
 
   //function
@@ -144,31 +144,42 @@ const Qulification = (props: Props) => {
             children: (
               <div className="timeline-border">
                 <div>
-                  <Texts size={22}>{item.ED_QUALIFI}</Texts>
+                  <Texts size={22}>
+                    {i18n.language == "th"
+                      ? item.ED_QUALIFI
+                      : item.ED_QUALIFI_EN}
+                  </Texts>
                 </div>
                 {/* // */}
                 <div style={{ paddingTop: "5px" }}>
                   <Texts size={15} weight="thin">
                     {item?.MAJOR
-                      ? `สาขาวิชา ${item?.MAJOR}`
+                      ? `${i18n.t("Major")} : ${
+                          i18n.language == "th" ? item?.MAJOR : item?.MAJOR_EN
+                        }`
                       : item?.DEPARTMENT
-                      ? `แผนกวิชา ${item?.DEPARTMENT}`
+                      ? `${i18n.t("Department")} : ${
+                          i18n.language == "th"
+                            ? item?.DEPARTMENT
+                            : item?.DEPARTMENT_EN
+                        }`
                       : null}
                   </Texts>
                 </div>
                 {/* // */}
                 {item?.FACULTY ? (
                   <div>
-                    <Texts
-                      size={15}
-                      weight="thin"
-                    >{`คณะ ${item?.FACULTY}`}</Texts>
+                    <Texts size={15} weight="thin">{`${i18n.t("Faculty")} : ${
+                      i18n.language == "th" ? item?.FACULTY : item.FACULTY_EN
+                    }`}</Texts>
                   </div>
                 ) : null}
                 {/* // */}
                 <div style={{ paddingTop: "15px" }}>
                   <Texts size={18} color="gray">
-                    {item?.SCHOOL_NAME}
+                    {i18n.language == "th"
+                      ? item?.SCHOOL_NAME
+                      : item?.SCHOOL_NAME_EN}
                   </Texts>
                 </div>
                 {/* // */}
@@ -215,28 +226,32 @@ const Qulification = (props: Props) => {
                     : null}
                 </div>
                 {/* // */}
-                <div>
+                {/* <div>
                   <Texts size={15} weight="thin">
                     {item.WORK_TYPE == "1"
-                      ? "Fulltime"
+                      ? i18n.language == "th"
+                        ? "พนักงานประจำ"
+                        : "Fulltime"
+                      : i18n.language == "th"
+                      ? "พนักงานสัญญาจ้าง"
                       : "Employment Agreement"}
                   </Texts>
-                </div>
+                </div> */}
                 {/* // */}
                 <div style={{ paddingTop: "20px" }}>
                   <CalendarOutlined style={{ color: "gray" }} />
                   {item?.WORK_START && (
                     <Texts size={14} weight="bold" color="gray">
-                      {` ${moment(item.WORK_START).format("YYYY")}`}
+                      {` ${moment(item.WORK_START).format("MMMM YYYY")}`}
                     </Texts>
                   )}
                   {item?.WORK_END && item.WORK_STATUS == "1" ? (
                     <Texts size={14} weight="bold" color="gray">
-                      {` - ${moment(item.WORK_END).format("YYYY")}`}
+                      {` - ${moment(item.WORK_END).format("MMMM YYYY")}`}
                     </Texts>
                   ) : (
                     <Texts size={14} weight="bold" color="gray">
-                      {` - ${moment().format("YYYY")}`}
+                      {` - ${moment().format("MMMM YYYY")}`}
                     </Texts>
                   )}
                 </div>

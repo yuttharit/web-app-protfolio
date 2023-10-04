@@ -22,5 +22,8 @@
   "pagecontacttitle": "การติดต่อ",
   "pagecontactsubtitle": "ติดต่อฉัน",
   "address": "ที่อยู่",
-  "contact": "ติดต่อ"
+  "contact": "ติดต่อ",
+  "Major": "สาขาวิชา",
+  "Department": "แผนกวิชา",
+  "Faculty": "คณะ"
 }
